@@ -6,8 +6,8 @@
     "**/CVS": true,
     "**/.DS_Store": true,
 
-    "**/.vscode": true,
-    // "**/package.json": true,
+    // "**/.vscode": true,
+    "**/package.json": true,
     "**/package-lock.json": true,
     "**/.editorconfig": true,
     "**/.env": true,
@@ -23,7 +23,7 @@
 
     // "**/client/src/styles": true,
     "**/client/src/registerServiceWorker.js": true,
-    // "**/example.env": true,
+    "**/example.env": true,
   },
-  "eslint.enable": false
+  "eslint.enable": true
 }

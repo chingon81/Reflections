@@ -45,7 +45,7 @@ class App extends React.Component {
     this.setState({
       student: e.target.value,
       show: 'meeting',
-      history: (JSON.parse(e.target.value)).slice(1)
+      history: (JSON.parse(e.target.value)).slice(1),
     });
     // console.log(typeof e.target.value);
     console.log(JSON.parse(e.target.value));
@@ -58,14 +58,12 @@ class App extends React.Component {
     });
   }
 
-
   // helper function for logging in during development
   logIn() {
     this.setState({
       isAuthenticated: true,
     });
   }
-
 
   // function to log out of session
   logOut() {
@@ -83,14 +81,18 @@ class App extends React.Component {
   render() {
     switch (this.state.show) {
       case 'meeting':
-        return <Meeting changeView={this.changeView} student={this.state.student} history={this.state.history}/>;
+        return (<Meeting
+          changeView={this.changeView}
+          student={this.state.student}
+          history={this.state.history}
+        />);
 
       default:
         return this.state.isAuthenticated ? (
           <Home
-            changeView={this.changeView}
+            // changeView={this.changeView}
             logout={this.logOut}
-            student={this.state.student}
+            // student={this.state.student}
             getStudent={this.getStudent}
           />
         ) : (
