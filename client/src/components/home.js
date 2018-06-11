@@ -23,7 +23,7 @@ class Home extends React.Component {
     this.getMembers = this.getMembers.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get('/dash/getchannels', {})
       .then((response) => {
         this.setState({
@@ -42,18 +42,12 @@ class Home extends React.Component {
         }, () => {
           // console.log('AllStudentState:', this.state.allStudents)
         });
-        // console.log(response)
-        // console.log('Get Users');
+        console.log('Info Received');
         this.setState({
           drop: true,
         });
       })
       .catch(console.error);
-    // setTimeout(() => {
-    //   this.setState({
-    //     drop: true,
-    //   });
-    // }, 7000);
   }
 
   getMembers(e) {
@@ -86,7 +80,10 @@ class Home extends React.Component {
           <PulseLoader />
         </Collapse>
 
-        <Collapse isOpen={this.state.drop}>
+        <Collapse
+          isOpen={this.state.drop}
+          // style={{ backgroundColor: 'paleturquoise ' }}
+        >
           <h1>Home Screen</h1>
           <Button size="sm" outline color="danger" onClick={() => this.props.logout()}>Logout</Button>
 

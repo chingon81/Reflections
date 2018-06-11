@@ -1,44 +1,26 @@
-# Project Name #
-
-<!-- 
-> This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
-
-There is an approach called "working backwards" that is widely used at Amazon. They work backwards from the customer, rather than starting with an idea for a product and trying to bolt customers onto it. While working backwards can be applied to any specific product decision, using this approach is especially important when developing new products or features.
-
-For new initiatives a product manager typically starts by writing an internal press release announcing the finished product. The target audience for the press release is the new/updated product's customers, which can be retail customers or internal users of a tool or technology. Internal press releases are centered around the customer problem, how current solutions (internal or external) fail, and how the new product will blow away existing solutions.
-
-If the benefits listed don't sound very interesting or exciting to customers, then perhaps they're not (and shouldn't be built). Instead, the product manager should keep iterating on the press release until they've come up with benefits that actually sound like benefits. Iterating on a press release is a lot less expensive than iterating on the product itself (and quicker!).
-
-If the press release is more than a page and a half, it is probably too long. Keep it simple. 3-4 sentences for most paragraphs. Cut out the fat. Don't make it into a spec. You can accompany the press release with a FAQ that answers all of the other business or execution questions so the press release can stay focused on what the customer gets. My rule of thumb is that if the press release is hard to write, then the product is probably going to suck. Keep working at it until the outline for each paragraph flows. 
-
-Oh, and I also like to write press-releases in what I call "Oprah-speak" for mainstream consumer products. Imagine you're sitting on Oprah's couch and have just explained the product to her, and then you listen as she explains it to her audience. That's "Oprah-speak", not "Geek-speak".
-
-Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
- -->
- 
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+# Reflections #
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Reflections offers Slack-streamlined feedback loops between managers and employees, teachers and students, mentors and mentees.
+   
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Reflections allows those offering feedback to take notes during a feedback session, send a message to the recipient's Slack all from our client. The recipient can then send her/his response through Slack, which becomes available in the client on a recipients' Meetings page. The client's color-code indicates when a recipient has sent reflections on feedback, has received feedback but not sent a response, or not yet had his/her first meeting. All feedback meeting notes, messages, and reflections are stored in our state-of-the-art database, powered by PostgreSQL.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Often mentors and managers offer feedback to mentees and employees but the results of implementing said feedback never makes it back. 
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Reflections allows a manager to oversee not only a history of the meetings and reflection from a recipient, but also when reflections for that 
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Before relfections, I always forgot that I needed to send feedback results to my campus lead at school. Now with Reflections, I'm always aware that I forgot to send these result to my lead." - Robert "GitMoney GitHub" Chung
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Open bit.ly/lindenbot and login with Slack. Reflections generates the list of departments, groups, and cohorts that you need to adress through the Slack channels you operate. Select the group of recipients you wish to message. Clicking on a member of that group will prompt a form to store feedback notes and offer a message to the member.  
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Head to bit.ly/lindenbot today and take a test drive it yourself!

@@ -13,7 +13,7 @@ class App extends React.Component {
 
     this.state = {
       show: 'home',
-      isAuthenticated: true,
+      isAuthenticated: false,
       student: '',
       history: '',
     };
@@ -21,7 +21,6 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
-    // this.test = this.test.bind(this);
     this.getStudent = this.getStudent.bind(this);
   }
 
@@ -33,7 +32,7 @@ class App extends React.Component {
       url: '/checkAuth',
     })
       .then((response) => {
-        console.log('response:', response.data);
+        // console.log('response:', response.data);
         this.setState({
           isAuthenticated: response.data.isAuthenticated,
         });
@@ -63,6 +62,7 @@ class App extends React.Component {
     this.setState({
       isAuthenticated: true,
     });
+    console.log('Logging In');
   }
 
   // function to log out of session
@@ -71,12 +71,9 @@ class App extends React.Component {
       isAuthenticated: false,
     });
     axios.get('/logout');
+    console.log('Logged Out');
   }
 
-  // test() {
-  //   console.log('AM I WorkING');
-  //   axios.get('/test');
-  // }
 
   render() {
     switch (this.state.show) {
@@ -90,9 +87,7 @@ class App extends React.Component {
       default:
         return this.state.isAuthenticated ? (
           <Home
-            // changeView={this.changeView}
             logout={this.logOut}
-            // student={this.state.student}
             getStudent={this.getStudent}
           />
         ) : (
