@@ -28,6 +28,7 @@ constructor(props) {
     this.notesChange = this.notesChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
+    this.reminderChange =  this.reminderChange.bind(this);
   }
 
   componentDidMount() {
@@ -90,6 +91,7 @@ constructor(props) {
         </Button>
 
         <h1>Meeting Screen for {this.props.student.split(',')[1]}</h1>
+<<<<<<< Updated upstream
         <Collapse isOpen={this.state.meetingDrop}>
           <Container>
             <Form>
@@ -119,9 +121,23 @@ constructor(props) {
                   onChange={this.messageChange}
                 />
               </FormGroup>
+               <FormGroup>
+              <Label for="reminder">set a reminder</Label>
+          
+                  <Input
+                    type="textarea"
+                    name="reminder"
+                    id="reminder"
+                    placeholder="ex: next thursday"
+                    value={this.state.reminder}
+                    onChange={this.reminderChange}
+                  />
+              </FormGroup>
               <Button color="primary" onClick={this.submitMessage}> Submit </Button>
             </Form>
             {this.props.history.map(message => (
+
+           
               <div key={message.id}>
                 <h3> ===== Meeting Session ===== </h3>
                 <h4 className="admin">Notes: {message.notes}</h4>

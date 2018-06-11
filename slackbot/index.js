@@ -4,6 +4,7 @@ const db = require('../db/database.js');
 
 dotenv.config({ silent: true });
 const token = process.env.BOT_OAUTH;
+const authToken = process.env.SLACK_OAUTH
 const web = new WebClient(token);
 const rtm = new RTMClient(token);
 
@@ -31,7 +32,7 @@ function getChannels() {
 
 function reminder(time, text= 'response to reflection', user){
   console.log("REMINDER FUNCTION HITTT")
-  web.apiCall('reminders.add',{time, text, user})
+  web.apiCall('reminders.add',{authToken, time, text, user}).then(console.log).catch(console.error)
 }
 
 function updateInfo() {
