@@ -32,3 +32,9 @@ BOT_USER_OAUTH = SLACK BOT OAUTH
 2. SET BUILD VARIABLE TO PROD
 3. CHANGE SLACK REDIRECT IN CLIENT/SRC/COMPONENTS/LOGIN AND SERVER/ROUTES/SLACK/AUTH.JS
 3. ```NPM RUN PROD```
+
+## Authors
+
+- [**Alex Donesky**](https://github.com/adonesky1)
+- [**Jacob Johnston**](https://github.com/johnstonjacob)
+- [**Calvin Chui**](https://github.com/snyperifle)
