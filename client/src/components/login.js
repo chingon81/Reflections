@@ -9,7 +9,7 @@ const Login = () => (
     {/* <button onClick={() => props.test()}>TEST</button> */}
     {/* <button onClick={props.logIn}>Debug Log In</button> */}
     <div>
-      <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://johnstonjacob.com/reflections/slack/auth">
+      < a href = "https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://alexdonesky.com/reflections/slack/auth" >
         <img
           alt="Sign in with Slack"
           height="40"

@@ -6,19 +6,22 @@ import PropTypes from 'prop-types';
 import timeConverter from '../util/timeConverter';
 
 class Meeting extends React.Component {
-  constructor(props) {
+constructor(props) {
     super(props);
     this.state = {
       student: JSON.parse(this.props.student.split(',')[0].slice(2)),
       notes: '',
       message: '',
       reminder: '',
+      // students: [],
+      // dropdownOpen: false,
       meetingDrop: false,
     };
     this.notesChange = this.notesChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
     this.reminderChange = this.reminderChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
+    this.reminderChange =  this.reminderChange.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +49,8 @@ class Meeting extends React.Component {
   }
 
   submitMessage() {
+   
+
     const data = {
       student: this.state.student,
       notes: this.state.notes,
@@ -61,6 +66,7 @@ class Meeting extends React.Component {
     alert('Message Sent');
   }
 
+
   render() {
     return (
       <div className="App">
@@ -72,6 +78,15 @@ class Meeting extends React.Component {
           <PulseLoader />
         </Collapse>
 
+
+        <Button
+          outline
+          color="secondary"
+          onClick={() => { this.props.changeView('home'); }}
+        >Home
+        </Button>
+
+        <h1>Meeting Screen for {this.props.student.split(',')[1]}</h1>
         <Collapse isOpen={this.state.meetingDrop}>
           <Button
             outline

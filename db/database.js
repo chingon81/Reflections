@@ -28,7 +28,12 @@ async function saveMeetings(notes, message, empslackid, meetdate) {
 // MeetId = id in meetings, foreign key in response
 function addResponse(response, resdate, meetid) {
   const sql = 'INSERT INTO response(restext, resdate, meetid) VALUES( $1, $2, $3)';
+<<<<<<< HEAD
+// console.log('hi')
+  client.query(sql, [response, resdate, meetid]).then(console.log);
+=======
   client.query(sql, [response, resdate, meetid]);
+>>>>>>> 9382fc05ac798b97a6f09445013ad6ae112ec40e
 }
 
 async function checkStatus(users) {
