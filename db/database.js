@@ -1,23 +1,25 @@
 const { Client } = require('pg');
 const dotenv = require('dotenv');
 
-dotenv.config({silent: true});
+dotenv.config({ silent: true });
 
-const connectionString = process.env.POSTGRESQL_AUTH 
+const connectionString = process.env.POSTGRESQL_AUTH;
 
 const client = new Client({
   connectionString,
 });
 client.connect();
 
-function saveEmployee(empname, slackid, cohort) {
-  const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( $1, $2, $3 )';
-  client.query(sql, [empname, slackid, cohort]).catch(err => err);
+async function saveEmployee(empname, slackid, cohort) {
+  const sql =
+    'INSERT INTO employees(empname, slackid, cohort) VALUES( $1, $2, $3 ) ON CONFLICT (slackid) DO NOTHING';
+  const result = await client.query(sql, [empname, slackid, cohort]).catch(console.error);
+  return result;
 }
 
-function saveMeetings(notes, message, empslackid, meetdate) {
+async function saveMeetings(notes, message, empslackid, meetdate) {
   const sql = 'INSERT INTO meetings(notes, message, empslackid, meetdate) VALUES( $1, $2, $3, $4)';
-  client.query(sql, [notes, message, empslackid, meetdate]).catch(err => err);
+  client.query(sql, [notes, message, empslackid, meetdate]).catch(console.err);
 }
 
 // Adds a response to the response table
@@ -26,27 +28,25 @@ function saveMeetings(notes, message, empslackid, meetdate) {
 // MeetId = id in meetings, foreign key in response
 function addResponse(response, resdate, meetid) {
   const sql = 'INSERT INTO response(restext, resdate, meetid) VALUES( $1, $2, $3)';
+<<<<<<< HEAD
 // console.log('hi')
   client.query(sql, [response, resdate, meetid]).then(console.log);
+=======
+  client.query(sql, [response, resdate, meetid]);
+>>>>>>> 9382fc05ac798b97a6f09445013ad6ae112ec40e
 }
 
-function checkStatus(users) {
-  return new Promise((res, rej) => {
-    const sql = `select *
+async function checkStatus(users) {
+  const sql = `select *
   from meetings left join response
   on response.meetid = meetings.id 
   where meetings.empslackid = ANY($1::varchar(15)[])`;
-
-    client
-      .query(sql, [users])
-      .then(res)
-      .catch(rej);
-  });
+  const result = await client.query(sql, [users]).catch(console.err);
+  return result;
 }
 
 function findLastMeeting(empid, callback) {
   const sql = 'SELECT id FROM MEETINGS WHERE (empslackid = $1 AND resid IS NULL);';
-
   client.query(sql, [empid]).then(callback);
 }
 

@@ -1,40 +1,9 @@
-<<<<<<< HEAD
-import {
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Container,
-  Col,
-  Row,
-  Button,
-  Collapse,
-} from 'reactstrap';
-import axios from 'axios';
-import { PulseLoader } from 'react-spinners';
-import PropTypes from 'prop-types';
-import React from 'react';
-
-function timeConverter(timestamp) {
-  const a = new Date(+timestamp);
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const month = months[a.getMonth()];
-  const date = a.getDate();
-  const hour = a.getHours();
-  const min = a.getMinutes() < 10 ? `0${a.getMinutes()}` : a.getMinutes();
-  const year = a.getFullYear();
-  const time = `${month} ${date}, ${year} @ ${hour}:${min}`;
-  console.log(a);
-  return time;
-}
-=======
 import React from 'react';
 import { Form, FormGroup, Input, Label, Container, Col, Row, Button, Collapse } from 'reactstrap';
 import axios from 'axios';
 import { PulseLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
 import timeConverter from '../util/timeConverter';
->>>>>>> b86ffb56550cd8be74830248ddbe80268455d5db
 
 class Meeting extends React.Component {
 constructor(props) {
@@ -80,33 +49,8 @@ constructor(props) {
   }
 
   submitMessage() {
-<<<<<<< HEAD
-    axios
-      .post('/dash/postmessage', {
-        student: this.state.student,
-        notes: this.state.notes,
-        message: this.state.message,
-<<<<<<< HEAD
-        reminder: this.state.reminder
-=======
-        reminder: this.state.reminder,
->>>>>>> b538312909f76f8373d616cd8017ed1ac4b07e68
-      });
-    alert('Message Sent');
-  }
+   
 
-<<<<<<< HEAD
-  reminder(){
-    axios
-      .post('/' ,{
-        reminder: this.state.reminder
-      })
-      console.log('Reminder Set')
-  }
-=======
->>>>>>> b538312909f76f8373d616cd8017ed1ac4b07e68
-
-=======
     const data = {
       student: this.state.student,
       notes: this.state.notes,
@@ -122,19 +66,19 @@ constructor(props) {
     alert('Message Sent');
   }
 
->>>>>>> b86ffb56550cd8be74830248ddbe80268455d5db
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">LindenBot</h1>
+          <h1 className="App-title">Reflections</h1>
         </header>
         <Collapse isOpen={!this.state.meetingDrop}>
           <h3>Loading...</h3>
           <PulseLoader />
         </Collapse>
 
-<<<<<<< HEAD
+
         <Button
           outline
           color="secondary"
@@ -143,9 +87,6 @@ constructor(props) {
         </Button>
 
         <h1>Meeting Screen for {this.props.student.split(',')[1]}</h1>
-<<<<<<< Updated upstream
-=======
->>>>>>> b538312909f76f8373d616cd8017ed1ac4b07e68
         <Collapse isOpen={this.state.meetingDrop}>
           <Button
             outline
@@ -186,19 +127,6 @@ constructor(props) {
                   onChange={this.messageChange}
                 />
               </FormGroup>
-<<<<<<< HEAD
-               <FormGroup>
-              <Label for="reminder">set a reminder</Label>
-          
-                  <Input
-                    type="textarea"
-                    name="reminder"
-                    id="reminder"
-                    placeholder="ex: next thursday"
-                    value={this.state.reminder}
-                    onChange={this.reminderChange}
-                  />
-=======
               <FormGroup>
                 <Label for="exampleText">Reminder</Label>
                 <Row>
@@ -213,20 +141,13 @@ constructor(props) {
                     />
                   </Col>
                 </Row>
->>>>>>> b538312909f76f8373d616cd8017ed1ac4b07e68
               </FormGroup>
               <Button color="primary" onClick={this.submitMessage}>
                 {' '}
                 Submit{' '}
               </Button>
             </Form>
-<<<<<<< HEAD
-            {this.props.history.map(message => (
-
-           
-=======
             {this.props.history.map((message) => (
->>>>>>> b86ffb56550cd8be74830248ddbe80268455d5db
               <div key={message.id}>
                 <h3> ===== meeting Session ===== </h3>
                 <h5 className="admin">Notes: {message.notes}</h5>

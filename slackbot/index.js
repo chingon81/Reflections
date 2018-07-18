@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const db = require('../db/database.js');
 
 dotenv.config({ silent: true });
+
 const token = process.env.BOT_OAUTH;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -12,33 +13,45 @@ const userToken = process.env.BOT_USER_OAUTH;
 >>>>>>> b538312909f76f8373d616cd8017ed1ac4b07e68
 =======
 const userToken = process.env.SLACK_OAUTH;
+<<<<<<< HEAD
 >>>>>>> b86ffb56550cd8be74830248ddbe80268455d5db
 const web = new WebClient(token);
 const rtm = new RTMClient(token);
+=======
+>>>>>>> 9382fc05ac798b97a6f09445013ad6ae112ec40e
 
-rtm.start();
+class Slack {
+  constructor(botOauth, userOauth) {
+    this.bot_oauth = botOauth;
+    this.user_oauth = userOauth;
+    this.web = new WebClient(this.bot_oauth);
+    this.rtm = new RTMClient(this.bot_oauth);
+    this.userList = {};
+    this.channelList = {};
 
-const userList = {};
-const channelList = {};
+    this.rtm.start();
+    this.updateInfo();
+    setInterval(() => this.updateInfo, 1800000);
+  }
 
-// user = 'UAYRAJH8W'
-function postMessage(text, user = 'UAYRAJH8W') {
-  web.im
-    .open({ user })
-    .then((data) => {
-      rtm.sendMessage(text, data.channel.id).catch(console.error);
-    })
-    .catch(console.error);
-}
+  setReminder(text = 'Respond to Reflections Bot', time, user) {
+    this.web.apiCall('reminders.add', {
+      text,
+      time,
+      user,
+      token: this.user_oauth,
+    });
+  }
 
-function getUsers() {
-  return userList;
-}
+  getUsers() {
+    return this.userList;
+  }
 
-function getChannels() {
-  return channelList;
-}
+  getChannels() {
+    return this.channelList;
+  }
 
+<<<<<<< HEAD
 function reminder(time, text= 'response to reflection', user){
   console.log("REMINDER FUNCTION HITTT")
   web.apiCall('reminders.add',{authToken, time, text, user}).then(console.log).catch(console.error)
@@ -53,43 +66,48 @@ function updateInfo() {
         return userList[item.id];
       });
     });
+=======
+  postMessage(text, user) {
+    this.web.im
+      .open({ user })
+      .then((data) => {
+        this.rtm.sendMessage(text, data.channel.id);
+      })
+      .catch(console.error);
+  }
+>>>>>>> 9382fc05ac798b97a6f09445013ad6ae112ec40e
 
-  web.channels // get list of channels and format into object to reference channelID to name
-    .list()
-    .then((res) => {
-      res.channels.map((item) => {
-        channelList[item.id] = { name: item.name, members: item.members };
-        return channelList[item.id];
-      });
-      // format channels to their names in object format for easy reference
-    });
-}
-function setReminder(text = 'Respond to LindenBot', time, user) {
-  web
-    .apiCall('reminders.add', {
-      text,
-      time,
-      user,
-      token: userToken,
-    })
-    .then(console.log)
-    .catch(console.error);
-}
-// setReminder('respond to lindenbot', 'next thursday at 10AM', 'UAYRAJH8W');
+  async updateInfo() {
+    const newUserList = await this.web.users.list();
+    const newChannelList = await this.web.channels.list();
 
-updateInfo();
-setInterval(updateInfo, 1800000);
+    this.userList = newUserList.members.reduce((acc, item) => {
+      if (!item.is_bot && item.name !== 'slackbot') acc[item.id] = item.name;
+      return acc;
+    }, {});
 
-rtm.on('slack_event', (type, event) => {
-  if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
-    let meetId;
-    db.findLastMeeting(event.user, (res) => {
-      meetId = res.rows[res.rows.length - 1].id;
-      db.addResponse(event.text, Date.now(), meetId);
+    this.channelList = newChannelList.channels.reduce((acc, item) => {
+      acc[item.id] = { name: item.name, members: item.members };
+      return acc;
+    }, {});
+  }
+
+  eventListener() {
+    this.rtm.on('slack_event', async (type, event) => {
+      if (type === 'message' && event.channel[0] === 'D' && event.user !== this.botID) {
+        const lastMeeting = await db.findLastMeeting(event.user);
+        const meetId = lastMeeting.rows.slice(-1)[0].id;
+        db.addResponse(event.text, Date.now(), meetId);
+      }
     });
   }
-});
+}
 
+const test = new Slack(token, userToken);
+
+// setReminder('respond to lindenbot', 'next thursday at 10AM', 'UAYRAJH8W');
+
+<<<<<<< HEAD
 
 
 module.exports.reminder = reminder
@@ -97,3 +115,6 @@ module.exports.postMessage = postMessage;
 module.exports.getUsers = getUsers;
 module.exports.getChannels = getChannels;
 module.exports.setReminder = setReminder;
+=======
+module.exports = test;
+>>>>>>> 9382fc05ac798b97a6f09445013ad6ae112ec40e

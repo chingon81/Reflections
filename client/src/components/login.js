@@ -1,15 +1,15 @@
 import React from 'react';
 
 
-const Login = props => (
+const Login = () => (
   <div className="App">
     <header className="App-header">
-      <h1 className="App-title">LindenBot</h1>
+      <h1 className="App-title">Reflections</h1>
     </header>
     {/* <button onClick={() => props.test()}>TEST</button> */}
     {/* <button onClick={props.logIn}>Debug Log In</button> */}
     <div>
-      <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.170.211/reflections/slack/auth">
+      < a href = "https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://alexdonesky.com/reflections/slack/auth" >
         <img
           alt="Sign in with Slack"
           height="40"
