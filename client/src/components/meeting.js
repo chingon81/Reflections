@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Form,
   FormGroup,
@@ -26,6 +27,14 @@ function timeConverter(timestamp) {
   console.log(a);
   return time;
 }
+=======
+import React from 'react';
+import { Form, FormGroup, Input, Label, Container, Col, Row, Button, Collapse } from 'reactstrap';
+import axios from 'axios';
+import { PulseLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
+import timeConverter from '../util/timeConverter';
+>>>>>>> b86ffb56550cd8be74830248ddbe80268455d5db
 
 class Meeting extends React.Component {
 constructor(props) {
@@ -54,7 +63,6 @@ constructor(props) {
     }, 1000);
   }
 
-
   messageChange(e) {
     this.setState({
       message: e.target.value,
@@ -64,7 +72,6 @@ constructor(props) {
     this.setState({
       notes: e.target.value,
     });
-    // console.log(this.state.student.slice(2));
   }
   reminderChange(e) {
     this.setState({
@@ -73,6 +80,7 @@ constructor(props) {
   }
 
   submitMessage() {
+<<<<<<< HEAD
     axios
       .post('/dash/postmessage', {
         student: this.state.student,
@@ -98,13 +106,26 @@ constructor(props) {
 =======
 >>>>>>> b538312909f76f8373d616cd8017ed1ac4b07e68
 
+=======
+    const data = {
+      student: this.state.student,
+      notes: this.state.notes,
+      message: this.state.message,
+      reminder: this.state.reminder,
+    };
+    const options = {
+      method: 'POST',
+      data,
+      url: '/reflections/dash/postMessage',
+    };
+    axios(options);
+    alert('Message Sent');
+  }
+
+>>>>>>> b86ffb56550cd8be74830248ddbe80268455d5db
   render() {
     return (
       <div className="App">
-
-        {/* <button onClick={() => { console.log(this.state); }}>Meeting State</button>
-        <button onClick={() => { console.log(this.props); }}>Meeting Props</button> */}
-
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
@@ -129,8 +150,11 @@ constructor(props) {
           <Button
             outline
             color="secondary"
-            onClick={() => { this.props.changeView('home'); }}
-          >Home
+            onClick={() => {
+              this.props.changeView('home');
+            }}
+          >
+            Home
           </Button>
 
           <h1>Meeting Screen for {this.props.student.split(',')[1]}</h1>
@@ -191,13 +215,20 @@ constructor(props) {
                 </Row>
 >>>>>>> b538312909f76f8373d616cd8017ed1ac4b07e68
               </FormGroup>
-              <Button color="primary" onClick={this.submitMessage}> Submit </Button>
+              <Button color="primary" onClick={this.submitMessage}>
+                {' '}
+                Submit{' '}
+              </Button>
             </Form>
+<<<<<<< HEAD
             {this.props.history.map(message => (
 
            
+=======
+            {this.props.history.map((message) => (
+>>>>>>> b86ffb56550cd8be74830248ddbe80268455d5db
               <div key={message.id}>
-                <h3> ===== Meeting Session ===== </h3>
+                <h3> ===== meeting Session ===== </h3>
                 <h5 className="admin">Notes: {message.notes}</h5>
                 <h3 className="admin">Message: {message.message}</h3>
                 <h6 className="admin">Date: {timeConverter(message.meetdate)}</h6>
@@ -206,15 +237,12 @@ constructor(props) {
                 <h6 className="student">Sent on: {timeConverter(message.resdate)}</h6>
               </div>
             ))}
-
-
           </Container>
         </Collapse>
       </div>
     );
   }
 }
-
 
 export default Meeting;
 

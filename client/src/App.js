@@ -17,6 +17,11 @@ class App extends React.Component {
       student: '',
       history: '',
     };
+    this.routes = {
+      meeting: () => <Meeting />,
+      login: () => <Login />,
+      home: () => <Home />,
+    };
 
     this.changeView = this.changeView.bind(this);
     this.logIn = this.logIn.bind(this);
@@ -24,19 +29,17 @@ class App extends React.Component {
     this.getStudent = this.getStudent.bind(this);
   }
 
-
   // when component mounts, checks server authentication
   componentDidMount() {
-    axios({
+    const options = {
       method: 'get',
-      url: '/checkAuth',
-    })
-      .then((response) => {
-        // console.log('response:', response.data);
-        this.setState({
-          isAuthenticated: response.data.isAuthenticated,
-        });
+      url: '/reflections/checkAuth',
+    };
+    axios(options).then((response) => {
+      this.setState({
+        isAuthenticated: response.data.isAuthenticated,
       });
+    });
   }
 
   // when student is selected, changes state to the ID of selected student
@@ -44,10 +47,10 @@ class App extends React.Component {
     this.setState({
       student: e.target.value,
       show: 'meeting',
-      history: (JSON.parse(e.target.value)).slice(1),
+      history: JSON.parse(e.target.value)
+        .slice(1)
+        .reverse(),
     });
-    // console.log(typeof e.target.value);
-    console.log(JSON.parse(e.target.value));
   }
 
   // function to change current view
@@ -62,7 +65,6 @@ class App extends React.Component {
     this.setState({
       isAuthenticated: true,
     });
-    console.log('Logging In');
   }
 
   // function to log out of session
@@ -70,26 +72,23 @@ class App extends React.Component {
     this.setState({
       isAuthenticated: false,
     });
-    axios.get('/logout');
-    console.log('Logged Out');
+    axios.get('/reflections/logout');
   }
-
 
   render() {
     switch (this.state.show) {
       case 'meeting':
-        return (<Meeting
-          changeView={this.changeView}
-          student={this.state.student}
-          history={this.state.history}
-        />);
+        return (
+          <Meeting
+            changeView={this.changeView}
+            student={this.state.student}
+            history={this.state.history}
+          />
+        );
 
       default:
         return this.state.isAuthenticated ? (
-          <Home
-            logout={this.logOut}
-            getStudent={this.getStudent}
-          />
+          <Home logout={this.logOut} getStudent={this.getStudent} />
         ) : (
           <Login logIn={this.logIn} test={this.test} />
         );
@@ -98,4 +97,3 @@ class App extends React.Component {
 }
 
 export default App;
-

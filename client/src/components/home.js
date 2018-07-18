@@ -24,25 +24,21 @@ class Home extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('/dash/getchannels', {})
+    axios.get('/reflections/dash/getchannels', {})
       .then((response) => {
         this.setState({
           cohorts: response.data,
         });
-        // console.log('Get Channels');
       })
       .catch((error) => {
-        console.log(error);
       });
 
-    axios.get('/dash/getusers', {})
+    axios.get('/reflections/dash/getusers', {})
       .then((response) => {
         this.setState({
           allStudents: response.data,
         }, () => {
-          // console.log('AllStudentState:', this.state.allStudents)
         });
-        console.log('Info Received');
         this.setState({
           drop: true,
         });
@@ -54,24 +50,16 @@ class Home extends React.Component {
     const membersArray = [];
 
     e.target.value.split(',').forEach((id) => {
-      // if (this.state.allStudents.hasOwnProperty(id)) {
       if (Object.prototype.hasOwnProperty.call(this.state.allStudents, id)) {
         membersArray.push(this.state.allStudents[id]);
       }
     });
     this.setState({ members: membersArray });
-    // console.log('Members: ', this.state.members);
   }
 
   render() {
     return (
       <div className="App">
-
-        {/* <button onClick={() => { console.log(this.state); }}>Home State</button>
-        <button onClick={() => { console.log(this.props); }}>Home Props</button> */}
-        {/* <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
-        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button> */}
-
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
@@ -82,7 +70,6 @@ class Home extends React.Component {
 
         <Collapse
           isOpen={this.state.drop}
-          // style={{ backgroundColor: 'paleturquoise ' }}
         >
           <h1>Home Screen</h1>
           <Button size="sm" outline color="danger" onClick={() => this.props.logout()}>Logout</Button>
@@ -133,7 +120,6 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  // changeView: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   getStudent: PropTypes.func.isRequired,
 };

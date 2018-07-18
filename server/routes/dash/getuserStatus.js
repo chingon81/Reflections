@@ -11,28 +11,22 @@ router.get('/', (req, res) => {
   Object.keys(data).forEach((item) => {
     users.push([item, data[item]]);
   });
-  console.log('USERS', users);
   const userStatus = [];
-  console.log('USERSTATUS:', userStatus);
   let meetId;
   users.forEach((user) => {
     userStatus.push(user[0], [1]);
-    db.findLastMeeting(event.user, (res) => {
-      meetId = res.rows[res.rows.length - 1].id;
-      db.checkStatus(meetId, (res) => {
-        console.log('result for each student:', res);
-        if (res === null) {
-          user.status.push(0);
-        } else {
-          user.status.push(1);
+    db.findLastMeeting(event.user, (dbData) => {
+      meetId = dbData.rows[dbData.rows.length - 1].id;
+      db.checkStatus(meetId, (response) => {
+        if (response === null) {
+          return user.status.push(0);
         }
+        return user.status.push(1);
       });
     });
   });
-
 
   res.send(userStatus);
 });
 
 module.exports = router;
-

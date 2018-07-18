@@ -1,21 +1,22 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/client/node_modules
-/client/yarn.lock
-package-lock.json
-/client/package-lock.json
+**/node_modules
+**/client/node_modules/.cache
+**/client/yarn.lock
+**/package-lock.json
+**/client/public
+
 # testing
 /coverage
 
 # production
-/build
-/client/build
+**/build
+**/package-lock.json
 
 # misc
 .DS_Store
-.env
+**/.env
 .env.local
 .env.development.local
 .env.test.local
