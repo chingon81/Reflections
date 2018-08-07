@@ -5,20 +5,16 @@ const db = require('../db/database.js');
 dotenv.config({ silent: true });
 
 const token = process.env.BOT_OAUTH;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 const authToken = process.env.SLACK_OAUTH
-=======
+
 const userToken = process.env.BOT_USER_OAUTH;
->>>>>>> b538312909f76f8373d616cd8017ed1ac4b07e68
-=======
+
 const userToken = process.env.SLACK_OAUTH;
-<<<<<<< HEAD
->>>>>>> b86ffb56550cd8be74830248ddbe80268455d5db
+
 const web = new WebClient(token);
 const rtm = new RTMClient(token);
-=======
->>>>>>> 9382fc05ac798b97a6f09445013ad6ae112ec40e
+
 
 class Slack {
   constructor(botOauth, userOauth) {
@@ -51,7 +47,6 @@ class Slack {
     return this.channelList;
   }
 
-<<<<<<< HEAD
 function reminder(time, text= 'response to reflection', user){
   console.log("REMINDER FUNCTION HITTT")
   web.apiCall('reminders.add',{authToken, time, text, user}).then(console.log).catch(console.error)
@@ -66,7 +61,7 @@ function updateInfo() {
         return userList[item.id];
       });
     });
-=======
+
   postMessage(text, user) {
     this.web.im
       .open({ user })
@@ -75,7 +70,6 @@ function updateInfo() {
       })
       .catch(console.error);
   }
->>>>>>> 9382fc05ac798b97a6f09445013ad6ae112ec40e
 
   async updateInfo() {
     const newUserList = await this.web.users.list();
@@ -107,7 +101,7 @@ const test = new Slack(token, userToken);
 
 // setReminder('respond to lindenbot', 'next thursday at 10AM', 'UAYRAJH8W');
 
-<<<<<<< HEAD
+
 
 
 module.exports.reminder = reminder
@@ -115,6 +109,5 @@ module.exports.postMessage = postMessage;
 module.exports.getUsers = getUsers;
 module.exports.getChannels = getChannels;
 module.exports.setReminder = setReminder;
-=======
 module.exports = test;
->>>>>>> 9382fc05ac798b97a6f09445013ad6ae112ec40e
+
