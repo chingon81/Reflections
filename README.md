@@ -1,4 +1,4 @@
-### Linden Bot //TODO - working title
+### Reflections
 
 ### Overview
 
@@ -12,7 +12,7 @@
 BUILD = dev
 ```
 
-### env variables //TODO
+### env variables 
 ```
 BUILD = DEV or PROD
 LOGIN_API_ID = LOGIN SLACK APP API ID
